@@ -38,6 +38,9 @@
 
   <dt>--password</dt>
   <dd>指定 WebDAV 密码，默认为"admin"</dd>
+
+  <dt>--cors</dt>
+  <dd>指定 CORS 跨域允许访问地址，默认不开启</dd>
 </dl>
 
 ## 高级特性
@@ -58,6 +61,8 @@
 由于 Basic Auth 的密码会明文传送，建议通过 Caddy / Nginx 等支持 HTTPS 的服务器进行反代。
 
 当用户名密码都设置为空时，WebDAV 将不验证任何身份，为了安全应该仅在可信环境内关闭用户名密码。
+
+当需要通过网页跨域访问时，可以设置 `--cors` 参数指定响应头 `Access-Control-Allow-Origin` 的内容。
 
 ### README.md
 

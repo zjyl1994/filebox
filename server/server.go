@@ -53,6 +53,15 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Add CORS header for WebDAV when set --cors
+	if len(vars.CorsOrigin) > 0 {
+		w.Header().Add("Access-Control-Allow-Origin", vars.CorsOrigin)
+		w.Header().Add("Access-Control-Allow-Headers", "Overwrite, Destination, Content-Type, Depth, User-Agent, Translate, Range, Content-Range, Timeout, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Location, Lock-Token, If")
+		w.Header().Add("Access-Control-Allow-Methods", "ACL, CANCELUPLOAD, CHECKIN, CHECKOUT, COPY, DELETE, GET, HEAD, LOCK, MKCALENDAR, MKCOL, MOVE, OPTIONS, POST, PROPFIND, PROPPATCH, PUT, REPORT, SEARCH, UNCHECKOUT, UNLOCK, UPDATE, VERSION-CONTROL")
+		w.Header().Add("Access-Control-Allow-Credentials", "true")
+		w.Header().Add("Access-Control-Expose-Headers", "DAV, Content-Length, Allow, ETag")
+		w.Header().Add("Access-Control-Max-Age", "3600")
+	}
 	if !basicAuthPass(w, r) {
 		return
 	}

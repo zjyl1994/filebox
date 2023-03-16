@@ -13,6 +13,7 @@ func Main() error {
 	flag.StringVar(&vars.Username, "username", "admin", "WebDAV 用户名")
 	flag.StringVar(&vars.Password, "password", "admin", "WebDAV 密码")
 	flag.StringVar(&vars.Title, "title", "文件盒子", "网站标题")
+	flag.StringVar(&vars.CorsOrigin, "cors", "", "CORS 允许的来源")
 	flag.Parse()
 	return server.Run()
 }
