@@ -1,4 +1,4 @@
 build:
-	go build -o filebox .
+	CGO_ENABLE=0 go build -o filebox .
 mini:
-	go build --ldflags="-s -w" -o filebox . && upx filebox
+	CGO_ENABLE=0 go build --ldflags="-s -w" -o filebox . && upx filebox
